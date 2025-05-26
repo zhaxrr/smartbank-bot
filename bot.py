@@ -1,6 +1,7 @@
+import threading
 import telebot
 import sqlite3
-import requests
+from flask import Flask
 
 # --- КОНФИГУРАЦИЯ ---
 TOKEN = '7894937869:AAG9Oozid-KIQ9Yc0EYlAtABRuVGS36VoOw'
@@ -110,6 +111,17 @@ def profile(message):
 def check_dollar(message):
     bot.send_message(message.chat.id, "💵 Текущий курс доллара: 500.00₸")
 
-# --- СТАРТ ---
-init_db()
-bot.polling()
+# --- ЗАПУСК БОТА + FLASK ---
+def run_bot():
+    init_db()
+    bot.polling(none_stop=True)
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "SmartBank Bot is running."
+
+if __name__ == '__main__':
+    threading.Thread(target=run_bot).start()
+    app.run(host='0.0.0.0', port=10000)
