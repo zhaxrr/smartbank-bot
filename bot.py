@@ -107,7 +107,6 @@ def profile(message):
         bot.send_message(message.chat.id, "Пользователь не найден. Пожалуйста, нажмите /start.")
 
 @bot.message_handler(commands=['check_dollar'])
-@bot.message_handler(commands=['check_dollar'])
 def check_dollar(message):
     bot.send_message(message.chat.id, "💵 Текущий курс доллара: 500.00₸")
 
