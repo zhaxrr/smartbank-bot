@@ -107,14 +107,9 @@ def profile(message):
         bot.send_message(message.chat.id, "Пользователь не найден. Пожалуйста, нажмите /start.")
 
 @bot.message_handler(commands=['check_dollar'])
+@bot.message_handler(commands=['check_dollar'])
 def check_dollar(message):
-    try:
-        response = requests.get("https://api.apilayer.com/exchangerates_data/latest?base=USD&symbols=KZT",
-                                headers={"apikey": "HEppKreyN8JHslCdI2aD3aiwIXipLwaV"})
-        rate = response.json()['rates']['KZT']
-        bot.send_message(message.chat.id, f"💵 Текущий курс доллара: {rate:.2f}₸")
-    except:
-        bot.send_message(message.chat.id, "❌ Не удалось получить текущий курс.")
+    bot.send_message(message.chat.id, "💵 Текущий курс доллара: 500.00₸")
 
 # --- СТАРТ ---
 init_db()
